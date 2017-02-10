@@ -2,7 +2,7 @@ FROM ubuntu:16.04
 MAINTAINER Buurman <https://github.com/buurman>
 
 ENV TZ Europe/Amsterdam
-ENV LC_ALL en_US.UTF-8 nl_NL.UTF-8
+ENV LC_ALL en_US.UTF-8
 
 RUN apt-get update
 RUN apt-get -y install \
