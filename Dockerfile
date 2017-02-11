@@ -10,13 +10,13 @@ RUN apt-get -y install \
   git \
   python-cheetah
 
-RUN mkdir /opt/autosub-bootstrapbill
-RUN git clone https://github.com/BenjV/autosub-bootstrapbill.git /opt/autosub-bootstrapbill
+RUN mkdir /opt/autosub
+RUN git clone https://github.com/BenjV/autosub.git /opt/autosub
 
-ADD default/config.properties /opt/autosub-bootstrapbill
+ADD default/config.properties /opt/autosub
 
 EXPOSE 8084
 VOLUME /tv
 
-WORKDIR /opt/autosub-bootstrapbill
+WORKDIR /opt/autosub
 CMD python AutoSub.py
