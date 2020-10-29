@@ -1,22 +1,7 @@
-FROM ubuntu:16.04
-MAINTAINER Buurman <https://github.com/buurman>
+FROM jfloff/alpine-python:2.7-slim
 
-ENV TZ Europe/Amsterdam
-ENV LC_ALL en_US.UTF-8
+LABEL maintainer=buurman WORKDIR /opt/autosub-master
 
-RUN apt-get update
-RUN apt-get -y install \
-  nano \
-  git \
-  python-cheetah
+RUN apk update && apk add gcc python-dev musl-dev && wget https://github.com/BenjV/autosub/archive/master.zip && unzip master.zip -d /opt && rm master.zip && easy_install Cheetah && apk del gcc python-dev musl-dev
 
-RUN mkdir /opt/autosub
-RUN git clone https://github.com/BenjV/autosub.git /opt/autosub
-
-ADD default/config.properties /opt/autosub
-
-EXPOSE 8084
-VOLUME /tv
-
-WORKDIR /opt/autosub
-CMD python AutoSub.py
+CMD [ "python", "AutoSub.py" ] EXPOSE 9960/tcp
